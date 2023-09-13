@@ -1,4 +1,6 @@
-import logo from './logo.svg';
+import React from 'react';
+import mockUsers from './mockUsers';
+import mockApartments from './mockApts';
 import './App.css';
 
 function App() {
