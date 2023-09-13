@@ -1,26 +1,38 @@
 import React from 'react';
 import mockUsers from './mockUsers';
 import mockApartments from './mockApts';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import ApartmentEdit from './pages/ApartmentEdit';
+import ApartmentIndex from './pages/ApartmentIndex';
+import ApartmentNew from './pages/ApartmentNew';
+import ApartmentProtectedIndex from './pages/ApartmentProtectedIndex';
+import ApartmentShow from './pages/ApartmentShow';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound'
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" elements={<Home />} /> 
+        <Route path="/apartmentedit/:id" elements={<ApartmentEdit />} /> 
+        <Route path="/apartmentindex" elements={<ApartmentIndex />} /> 
+        <Route path="/apartmentnew" elements={<ApartmentNew />} /> 
+        <Route path="/apartmentshow/:id" elements={<ApartmentShow />} /> 
+        <Route path="/apartmentprotectedindex" elements={<ApartmentProtectedIndex />} /> 
+        <Route path="/signin" elements={<SignIn />} /> 
+        <Route path="/signup" elements={<SignUp />} />
+        <Route path="*" elements={<NotFound />} /> 
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
