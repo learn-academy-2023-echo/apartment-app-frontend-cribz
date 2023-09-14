@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react"
+import { Badge } from 'reactstrap';
 
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
+return (
+    
+    <h2>
+    App Created By :{''}
+    <Badge>
+      : Bao, Megan & Mike
+    </Badge>
+  </h2>
+    )
 }
 
 export default Footer

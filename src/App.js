@@ -13,6 +13,8 @@ import NotFound from './pages/NotFound'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
+import { Routes, Route } from "react-router-dom"
+
 
 import './App.css';
 
