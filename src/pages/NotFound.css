@@ -1,0 +1,23 @@
+.notFound-container{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.image-background{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.notFound-image{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+.notFound-content{
+    position: absolute;
+}
