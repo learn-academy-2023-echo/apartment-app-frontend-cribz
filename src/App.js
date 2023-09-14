@@ -1,4 +1,4 @@
-import React, {  useState } from "react" 
+import React, { useState } from "react"
 import mockUsers from './mockUsers';
 import mockApartments from './mockApts';
 import Footer from './components/Footer';
@@ -23,20 +23,27 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0])
   const [apartments, setApartments] = useState(mockApartments)
 
+  console.log(currentUser)
 
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} /> 
-        <Route path="/apartmentedit/:id" element={<ApartmentEdit />} /> 
-        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments}/>} /> 
-        <Route path="/apartmentnew" element={<ApartmentNew />} /> 
-        <Route path="/apartmentshow/:id" element={<ApartmentShow apartments={apartments}/>} /> 
-        <Route path="/apartmentprotectedindex" element={<ApartmentProtectedIndex />} /> 
-        <Route path="/signin" element={<SignIn />} /> 
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="*" element={<NotFound />} /> 
+        <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
+        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
+        <Route path="/apartmentnew" element={<ApartmentNew />} />
+        <Route path="/apartmentshow/:id" element={<ApartmentShow apartments={apartments} />} />
+        {currentUser && (
+          <Route
+            path="/myapartments"
+            element={<ApartmentProtectedIndex
+              currentUser={currentUser}
+              apartments={apartments} />} />
+        )}
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
