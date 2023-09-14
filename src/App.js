@@ -22,8 +22,10 @@ import './App.css';
 const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0])
   const [apartments, setApartments] = useState(mockApartments)
-
-  console.log(currentUser)
+  const createApartment = (apartment) => {
+    // fetch("http://localhost:3000/
+    console.log(apartment)
+  }
 
   return (
     <>
