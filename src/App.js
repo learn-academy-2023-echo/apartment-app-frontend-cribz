@@ -23,15 +23,15 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/" elements={<Home />} /> 
-        <Route path="/apartmentedit/:id" elements={<ApartmentEdit />} /> 
-        <Route path="/apartmentindex" elements={<ApartmentIndex />} /> 
-        <Route path="/apartmentnew" elements={<ApartmentNew />} /> 
-        <Route path="/apartmentshow/:id" elements={<ApartmentShow />} /> 
-        <Route path="/apartmentprotectedindex" elements={<ApartmentProtectedIndex />} /> 
-        <Route path="/signin" elements={<SignIn />} /> 
-        <Route path="/signup" elements={<SignUp />} />
-        <Route path="*" elements={<NotFound />} /> 
+        <Route path="/" element={<Home />} /> 
+        <Route path="/apartmentedit/:id" element={<ApartmentEdit />} /> 
+        <Route path="/apartmentindex" element={<ApartmentIndex />} /> 
+        <Route path="/apartmentnew" element={<ApartmentNew />} /> 
+        <Route path="/apartmentshow/:id" element={<ApartmentShow />} /> 
+        <Route path="/apartmentprotectedindex" element={<ApartmentProtectedIndex />} /> 
+        <Route path="/signin" element={<SignIn />} /> 
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} /> 
       </Routes>
       <Footer />
     </>

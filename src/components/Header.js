@@ -1,11 +1,11 @@
 import React from "react"
 import { Nav, NavItem } from "reactstrap"
 import { NavLink } from "react-router-dom"
-
+import './Header.css'
 
 const Header = () => {
   return (
-    <Nav>
+    <Nav className='nav-bar'>
       <NavItem>
         <NavLink to="/" className="nav-link">
           Home Page
