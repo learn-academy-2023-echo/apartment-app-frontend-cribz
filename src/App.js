@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {  useState } from "react" 
 import mockUsers from './mockUsers';
 import mockApartments from './mockApts';
 import Footer from './components/Footer';
@@ -18,14 +18,19 @@ import { Routes, Route } from "react-router-dom"
 
 import './App.css';
 
+
 const App = () => {
+  const [currentUser, setCurrentUser] = useState(mockUsers[0])
+  const [apartments, setApartments] = useState(mockApartments)
+
+
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} /> 
         <Route path="/apartmentedit/:id" element={<ApartmentEdit />} /> 
-        <Route path="/apartmentindex" element={<ApartmentIndex />} /> 
+        <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments}/>} /> 
         <Route path="/apartmentnew" element={<ApartmentNew />} /> 
         <Route path="/apartmentshow/:id" element={<ApartmentShow />} /> 
         <Route path="/apartmentprotectedindex" element={<ApartmentProtectedIndex />} /> 

@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <>
       <h2>
-        App Created By :{''}
+        App Created By:
         <Badge>
-          : Bao, Megan & Mike
+          Bao, Megan & Mike
         </Badge>
       </h2>
     </>
