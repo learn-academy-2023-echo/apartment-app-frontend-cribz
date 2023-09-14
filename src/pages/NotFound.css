@@ -18,12 +18,16 @@
     z-index: -2;
 }
 
-.notFound-content{
+.notFound-content > h2{
     position: absolute;
     /* moving */
     transform: translate(-50%, -50%);
     top: 30%;
     left: 50%;
     text-align: center;
-    font-family:Verdana, Geneva, Tahoma, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: white;
+    font-weight: 500;
+    font-style: bold;
+    font-size: 5rem;
 }

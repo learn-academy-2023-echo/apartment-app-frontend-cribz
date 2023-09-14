@@ -1,15 +1,17 @@
 import React from "react"
 import { Badge } from 'reactstrap';
+import './Footer.css'
 
 const Footer = () => {
   return (
     <>
-      <h2>
-        App Created By:
+      <div className='footer-container'>
         <Badge>
-          Bao, Megan & Mike
+          <p>
+            © Bao, Megan & Mike
+          </p>
         </Badge>
-      </h2>
+      </div>
     </>
   )
 }
