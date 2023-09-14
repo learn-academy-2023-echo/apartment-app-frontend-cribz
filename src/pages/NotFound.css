@@ -20,4 +20,10 @@
 
 .notFound-content{
     position: absolute;
+    /* moving */
+    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 50%;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
