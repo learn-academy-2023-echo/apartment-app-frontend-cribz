@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Card, CardImg, CardText, CardBody,
+  Card, CardImg, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import { NavLink } from "react-router-dom"
 
 const ApartmentProtectedIndex = ({ apartments, currentUser }) => {
-  const myApartments = apartments.filter(apartment => currentUser.id === apartment.user_id)
-
+  const myApartments = apartments.filter(apartment => currentUser?.id === apartment.user_id)
+  console.log(apartments)
   return (
     <>
       <div><h1>My Listings</h1></div>
@@ -23,7 +23,9 @@ const ApartmentProtectedIndex = ({ apartments, currentUser }) => {
               </div>
               <NavLink to={`/apartmentshow/${apartment.id}`} className="nav-link">
                 <Button className='apartment-button'>More Details</Button>
-              </NavLink>
+                <Button className='apartment-button'>Edit</Button>
+                <Button className='apartment-button'>Delete</Button>
+              </NavLink >
             </CardBody>
           </Card>
         )

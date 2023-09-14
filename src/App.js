@@ -23,13 +23,15 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(mockUsers[0])
   const [apartments, setApartments] = useState(mockApartments)
 
-  
+  console.log(currentUser)
 
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
         <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
         <Route path="/apartmentnew" element={<ApartmentNew />} />
@@ -41,8 +43,6 @@ const App = () => {
               currentUser={currentUser}
               apartments={apartments} />} />
         )}
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
