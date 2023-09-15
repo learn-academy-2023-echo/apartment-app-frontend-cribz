@@ -27,7 +27,6 @@ const App = () => {
   }
 
   const signUp = (userInfo) => {
-    console.log("sign up invoked")
     fetch('http://localhost:3000/signup', {
       body: JSON.stringify(userInfo),
       headers: {
@@ -50,14 +49,48 @@ const App = () => {
     .catch(error => console.log("login errors: ", error))
   }
 
-  const signIn = () => {
-    setCurrentUser(null)
-    console.log("Signed in")
+  const signIn = (userInfo) => {
+    fetch('http://localhost:3000/signin', {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw Error(response.statusText)
+      }
+      localStorage.setItem("token", response.headers.get("Authorization"))
+      return response.json()
+    })
+    .then(payload => {
+      localStorage.setItem("user", JSON.stringify(payload))
+      setCurrentUser(payload)
+    })
+    .catch(error => console.log("login errors: ", error))
   }
+  
+  
 
   const signOut = () => {
+    fetch('http://localhost:3000/signout', {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") //retrieve the token
+    },
+    method: "DELETE"
+  })
+  .then(payload => {
     setCurrentUser(null)
-  }
+    localStorage.removeItem("token")  // remove the token
+    localStorage.removeItem("user")
+    
+  })
+  .catch(error => console.log("log out errors: ", error))
+}
+
   
 
   return (
