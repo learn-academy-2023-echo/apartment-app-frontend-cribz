@@ -6,8 +6,8 @@ const SignIn = ({ signIn }) => {
   const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
-    signIn()
-    navigate("/myapartments")
+    // signIn()
+    // navigate("/myapartments")
 
   }
 

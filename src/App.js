@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import mockUsers from './mockUsers';
 // import mockApartments from './mockApts';
 import Footer from './components/Footer';
@@ -19,6 +19,14 @@ import './App.css';
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [apartments, setApartments] = useState([])
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if (loggedInUser) {
+      setCurrentUser(JSON.parse(loggedInUser))
+    }
+  }, [])
+  
 
   const location = useLocation()
   const createApartment = (apartment) => {
