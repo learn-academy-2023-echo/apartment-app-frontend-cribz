@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import mockUsers from './mockUsers';
-import mockApartments from './mockApts';
+// import mockUsers from './mockUsers';
+// import mockApartments from './mockApts';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ApartmentEdit from './pages/ApartmentEdit';
@@ -18,7 +18,7 @@ import './App.css';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [apartments, setApartments] = useState(mockApartments)
+  const [apartments, setApartments] = useState([])
 
   const location = useLocation()
   const createApartment = (apartment) => {
@@ -28,10 +28,30 @@ const App = () => {
 
   const signUp = (userInfo) => {
     console.log("sign up invoked")
+    fetch('http://localhost:3000/signup', {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw Error(response.statusText)
+      }
+      localStorage.setItem("token", response.headers.get("Authorization"))
+      return response.json()
+    })
+    .then(payload => {
+      localStorage.setItem("user", JSON.stringify(payload))
+      setCurrentUser(payload)
+    })
+    .catch(error => console.log("login errors: ", error))
   }
 
   const signIn = () => {
-    setCurrentUser(mockUsers[1])
+    setCurrentUser(null)
     console.log("Signed in")
   }
 
