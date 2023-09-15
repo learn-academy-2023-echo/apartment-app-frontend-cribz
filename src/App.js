@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
-// import mockUsers from './mockUsers';
-// import mockApartments from './mockApts';
+import mockUsers from './mockUsers';
+import mockApartments from './mockApts';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ApartmentEdit from './pages/ApartmentEdit';
@@ -18,7 +18,7 @@ import './App.css';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [apartments, setApartments] = useState([])
+  const [apartments, setApartments] = useState([mockApartments])
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user")
