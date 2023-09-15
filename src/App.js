@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import mockUsers from './mockUsers';
 import mockApartments from './mockApts';
 import Footer from './components/Footer';
@@ -20,6 +20,14 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [apartments, setApartments] = useState(mockApartments)
 
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if (loggedInUser) {
+      setCurrentUser(JSON.parse(loggedInUser))
+    }
+  }, [])
+  
+
   const location = useLocation()
   const createApartment = (apartment) => {
     // fetch("http://localhost:3000/
@@ -27,18 +35,70 @@ const App = () => {
   }
 
   const signUp = (userInfo) => {
-    console.log("sign up invoked")
+    fetch('http://localhost:3000/signup', {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw Error(response.statusText)
+      }
+      localStorage.setItem("token", response.headers.get("Authorization"))
+      return response.json()
+    })
+    .then(payload => {
+      localStorage.setItem("user", JSON.stringify(payload))
+      setCurrentUser(payload)
+    })
+    .catch(error => console.log("login errors: ", error))
   }
 
-  const signIn = () => {
-    setCurrentUser(mockUsers[1])
-    console.log("Signed in")
-  }
-
-  const signOut = () => {
-    setCurrentUser(null)
+  const signIn = (userInfo) => {
+    fetch('http://localhost:3000/signin', {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      method: "POST"
+    })
+    .then(response => {
+      if(!response.ok) {
+        throw Error(response.statusText)
+      }
+      localStorage.setItem("token", response.headers.get("Authorization"))
+      return response.json()
+    })
+    .then(payload => {
+      localStorage.setItem("user", JSON.stringify(payload))
+      setCurrentUser(payload)
+    })
+    .catch(error => console.log("login errors: ", error))
   }
   
+
+  const signOut = () => {
+    fetch('http://localhost:3000/signout', {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") //retrieve the token
+    },
+    method: "DELETE"
+  })
+  .then(payload => {
+    setCurrentUser(null)
+    localStorage.removeItem("token")  // remove the token
+    localStorage.removeItem("user")
+    
+  })
+  .catch(error => console.log("log out errors: ", error))
+}
+
+
 
   return (
     <>
@@ -60,7 +120,8 @@ const App = () => {
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {location.pathname !== "/apartmentindex" && <Footer />}
+      {/* if location doesnt equal pathname, render footer */}
+      {location.pathname !== "/apartmentindex" || location.pathname !== "/myapartments" && <Footer />}
     </>
   );
 }

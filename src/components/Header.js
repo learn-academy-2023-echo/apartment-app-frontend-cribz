@@ -25,6 +25,7 @@ const Header = ({ currentUser, signOut }) => {
           New Apartment
         </NavLink>
       </NavItem>
+      {/* currentuser exists */}
       {currentUser && (
         <>
         <NavItem>
@@ -39,7 +40,7 @@ const Header = ({ currentUser, signOut }) => {
       </NavItem>
       </>
       )}
-
+      {/* currentuser is false aka doesn't exist */}
       {!currentUser && (
         <>
           <NavItem>
