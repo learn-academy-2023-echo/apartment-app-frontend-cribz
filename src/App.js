@@ -13,30 +13,43 @@ import NotFound from './pages/NotFound'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
-import { Routes, Route } from "react-router-dom"
-
-
+import { Routes, Route, useLocation } from "react-router-dom"
 import './App.css';
 
-
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(mockUsers[0])
+  const [currentUser, setCurrentUser] = useState(null)
   const [apartments, setApartments] = useState(mockApartments)
+
+  const location = useLocation()
   const createApartment = (apartment) => {
     // fetch("http://localhost:3000/
     console.log(apartment)
   }
 
+  const signUp = (userInfo) => {
+    console.log("sign up invoked")
+  }
+
+  const signIn = () => {
+    setCurrentUser(mockUsers[1])
+    console.log("Signed in")
+  }
+
+  const signOut = () => {
+    setCurrentUser(null)
+  }
+  
+
   return (
     <>
-      <Header />
+      <Header currentUser={currentUser} signOut={signOut}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn signIn={signIn} />} />
+        <Route path="/signup" element={<SignUp signUp={signUp}/>} />
         <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
         <Route path="/apartmentindex" element={<ApartmentIndex apartments={apartments} />} />
-        <Route path="/apartmentnew" element={<ApartmentNew />} />
+        <Route path="/apartmentnew" element={<ApartmentNew createApartment={createApartment}/>} />
         <Route path="/apartmentshow/:id" element={<ApartmentShow apartments={apartments} />} />
         {currentUser && (
           <Route
@@ -47,7 +60,7 @@ const App = () => {
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
+      {location.pathname !== "/apartmentindex" && <Footer />}
     </>
   );
 }

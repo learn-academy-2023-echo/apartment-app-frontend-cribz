@@ -10,6 +10,8 @@ const ApartmentProtectedIndex = ({ apartments, currentUser }) => {
   console.log(apartments)
   return (
     <>
+      <br />
+      <br />
       <div><h1>My Listings</h1></div>
       {myApartments?.map((apartment, index) => {
         return (
