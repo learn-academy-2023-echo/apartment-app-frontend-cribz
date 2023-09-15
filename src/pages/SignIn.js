@@ -15,7 +15,7 @@ const SignIn = ({ signIn }) => {
       user: { email: data.email, password: data.password },
     }
     signIn(userInfo)
-    navigate("/76")
+    navigate("/")
     e.target.reset()
   }
 

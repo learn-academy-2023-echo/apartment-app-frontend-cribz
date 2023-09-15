@@ -18,7 +18,7 @@ import './App.css';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [apartments, setApartments] = useState([mockApartments])
+  const [apartments, setApartments] = useState(mockApartments)
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user")
@@ -80,7 +80,6 @@ const App = () => {
     .catch(error => console.log("login errors: ", error))
   }
   
-  
 
   const signOut = () => {
     fetch('http://localhost:3000/signout', {
@@ -99,7 +98,7 @@ const App = () => {
   .catch(error => console.log("log out errors: ", error))
 }
 
-  
+
 
   return (
     <>
