@@ -18,13 +18,14 @@ import './App.css';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [apartments, setApartments] = useState(mockApartments)
+  const [apartments, setApartments] = useState([])
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
       setCurrentUser(JSON.parse(loggedInUser))
     }
+    readApartments()
   }, [])
   
 
@@ -98,7 +99,12 @@ const App = () => {
   .catch(error => console.log("log out errors: ", error))
 }
 
-
+const readApartments = () => {
+  fetch('http://localhost:3000/apartments')
+  .then(response => response.json())
+  .then(payload => setApartments(payload))
+  .catch(error => console.log(error))
+} 
 
   return (
     <>
