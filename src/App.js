@@ -60,7 +60,8 @@ const App = () => {
         )}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {location.pathname !== "/apartmentindex" && <Footer />}
+      {/* if location doesnt equal pathname, render footer */}
+      {location.pathname !== "/apartmentindex" || location.pathname !== "/myapartments" && <Footer />}
     </>
   );
 }
