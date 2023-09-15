@@ -1,12 +1,11 @@
 .nav-bar{
-
   position: absolute;
   z-index: 1;
   
 }
 
 .nav-bar .nav-link {
-  font-size: 1.9rem;
+  font-size: 1.2rem;
   height: 100%;
   width: max-content;
   text-decoration: none;

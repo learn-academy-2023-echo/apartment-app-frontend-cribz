@@ -3,7 +3,11 @@ import { Nav, NavItem } from "reactstrap"
 import { NavLink } from "react-router-dom"
 import './Header.css'
 
-const Header = () => {
+const Header = ({ currentUser, signOut }) => {
+  const handleClick = () => {
+    signOut()
+  }
+
   return (
     <Nav className='nav-bar'>
       <NavItem>
@@ -21,6 +25,36 @@ const Header = () => {
           New Apartment
         </NavLink>
       </NavItem>
+      {currentUser && (
+        <>
+        <NavItem>
+          <NavLink to="/myapartments" className="nav-link">
+            My Apartments
+          </NavLink>
+        </NavItem>
+        <NavItem>
+        <NavLink to="/" className="nav-link" onClick={handleClick}>
+          Sign Out
+        </NavLink>
+      </NavItem>
+      </>
+      )}
+
+      {!currentUser && (
+        <>
+          <NavItem>
+            <NavLink to="/signin" className="nav-link">
+              Log In
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/signup" className="nav-link">
+              Sign Up
+            </NavLink>
+          </NavItem>
+          
+        </>
+      )}
     </Nav>
   )
 }
